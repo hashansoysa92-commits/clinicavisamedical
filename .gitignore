@@ -6,3 +6,4 @@ node_modules/
 coverage/
 *.log
 migration*.json
+!deploy/windows/windows.env.example

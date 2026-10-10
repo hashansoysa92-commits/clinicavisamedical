@@ -24,5 +24,5 @@ async function createApp(options={}){
  };
  return {server:http.createServer(handler),call,rt,store};
 }
-if(require.main===module)createApp().then(app=>app.server.listen(Number(process.env.PORT)||3000,'0.0.0.0',()=>console.log('Clinica Visa Medical ready'))).catch(e=>{console.error(e.message);process.exitCode=1;});
+if(require.main===module)createApp().then(app=>app.server.listen(Number(process.env.PORT)||3000,process.env.HOST||'0.0.0.0',()=>console.log('Clinica Visa Medical ready'))).catch(e=>{console.error(e.message);process.exitCode=1;});
 module.exports={createApp};

@@ -32,3 +32,7 @@ Follow [migration](docs/MIGRATION.md) before entering patients in the new system
 ## Free VM hosting
 
 Oracle Always Free deployment files are in `deploy/oracle/`; see [Oracle setup](docs/ORACLE_FREE.md). They run the same single-instance backend with HTTPS and persistent configuration. Account verification, an available Always Free VM, a DNS hostname, and private Google OAuth setup are still required. Preparing these files does not deploy a live server.
+
+## Hospital Windows PC hosting
+
+For the selected hospital-PC deployment, use [Windows server setup](docs/WINDOWS_SERVER.md). It includes boot startup/restart scripts and a private configuration example. A named HTTPS tunnel provides one address inside/outside the hospital; a controlled domain and Google OAuth authorization are required. No remote installation has been performed yet.
