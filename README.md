@@ -28,3 +28,7 @@ Follow [migration](docs/MIGRATION.md) before entering patients in the new system
 ## Validation and limits
 
 `npm test` covers accounts, role access, patient saves, room queues, ticks, deletion, restart restore, failed persistence rollback, Excel output, private API routing and Drive folder validation. External Drive operations and live tablet/browser behavior still require verification with the deployed credentials. Saves depend on Drive connectivity and network latency; this does not promise instantaneous remote persistence. OAuth email-code recovery from Apps Script is replaced by username/password access. Runtime business rules retain a compatibility layer for the prior data model, so existing fields stay aligned.
+
+## Free VM hosting
+
+Oracle Always Free deployment files are in `deploy/oracle/`; see [Oracle setup](docs/ORACLE_FREE.md). They run the same single-instance backend with HTTPS and persistent configuration. Account verification, an available Always Free VM, a DNS hostname, and private Google OAuth setup are still required. Preparing these files does not deploy a live server.
