@@ -2,7 +2,7 @@
 
 Import this GitHub repository into Netlify. Keep `netlify.toml` settings: publish `public`, build `npm test`, Node 22. Enable Netlify Database in Data & Storage if automatic provisioning has not created it. The migration creates one coordination row; it stores only the Drive folder ID, current snapshot file ID, and revision. Patient records, staff password hashes, documents and signatures stay in private Google Drive snapshots.
 
-Set these as private Netlify environment variables scoped to **Functions / Production**:
+Set these as private Netlify environment variables marked **Contains secret values**, with values only for the **Production** deploy context. Select Functions-only scope if the plan supports it; the free plan uses its available secret scopes:
 
 * `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REFRESH_TOKEN`: authorized Google account with write access to the dedicated folder. Do not commit these to GitHub or paste them in chat.
 * `DRIVE_FOLDER_ID`: dedicated empty folder ID for the first startup.
