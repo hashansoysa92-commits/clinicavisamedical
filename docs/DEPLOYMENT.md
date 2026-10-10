@@ -29,3 +29,9 @@ The repository root redirects to `public/index.html`, retaining room/tablet quer
 Render sets RENDER_EXTERNAL_URL automatically; the server uses this URL for generated tablet and room links when APP_URL is unset. Open that server URL for the complete same-origin application, with no public/config.js change required. For the GitHub Pages entry, set public/config.js to that same server origin and publish the change. The folder is selected inside Super Admin → Drive Storage after authorization. Existing records still require the private migration process.
 
 Live acceptance: verify /healthz, sign in, connect an empty private Drive folder, use a synthetic patient to verify today's room queues, signature display, passport page 2 and PDF; restart the service and verify the saved record survives. This file does not imply those live checks have already passed.
+
+## Render Free
+
+Select the Free compute option explicitly. For manual creation choose Node, build `npm test`, start `npm start`, and health check `/healthz`. `render-free.yaml` is an optional separate Blueprint path; the default render.yaml describes paid hosting. Set STATELESS_HOST=true and DRIVE_CONFIG_FOLDER_ID to a dedicated private Drive folder ID. Configure the administrator password and Google OAuth credentials as host secrets. The folder ID is a durable configuration anchor. Super Admin can select a patient storage folder; selection is saved to clinicavisamedical-storage.json in the anchor and read at every server startup. No local persistent disk is required. The anchor must remain writable and its environment value unchanged.
+
+Free instances sleep when idle, have usage/memory/compute limits, and may be restarted. This is not unlimited or always-on hosting. External Drive credentials and live acceptance checks are still required.
