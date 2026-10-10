@@ -17,3 +17,7 @@ docker run --env-file .env -p 3000:3000 -v clinica-config:/data clinicavisamedic
 The Drive API receives private state JSON and blob files, all stored inside the selected folder. No public sharing permissions are created. Choose a folder whose existing permissions match the hospital's access requirements. Retain independent backups of the Drive state file before migration or major upgrades. A single-instance container avoids multiple servers overwriting the same Drive state file. Horizontal scaling and cross-instance locking require a separate persistence design.
 
 GitHub Actions runs tests on pushes. Hosting deployment is separate; this repository does not contain Google credentials or create a cloud host automatically.
+
+## GitHub Pages frontend
+
+The repository root redirects to `public/index.html`, retaining room/tablet query parameters. Pages serves the interface only. Deploy the Node server on a single persistent container first; set `APP_URL` to the public frontend URL (so room/tablet links open the interface), and include the backend origin plus `https://hashansoysa92-commits.github.io` in `FRONTEND_ORIGINS`. Set `window.CLINICA_API_BASE` in `public/config.js` to that HTTPS backend origin. Do not put secrets in config.js. Until this is configured, Pages explicitly shows the missing server connection and disables password submission.
