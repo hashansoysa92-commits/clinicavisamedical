@@ -1,0 +1,37 @@
+# This provisions a paid always-on service and persistent disk.
+# Review Render's displayed cost before confirming deployment.
+services:
+  - type: web
+    name: clinica-visa-medical
+    runtime: node
+    plan: 1c-2g
+    region: singapore
+    numInstances: 1
+    buildCommand: npm test
+    startCommand: npm start
+    healthCheckPath: /healthz
+    disk:
+      name: clinica-config
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: NODE_ENV
+        value: production
+      - key: ADMIN_NAME
+        value: Hashan
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: OWNER_EMAIL
+        value: hashansoysa92@gmail.com
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: GOOGLE_REFRESH_TOKEN
+        sync: false
+      - key: FRONTEND_ORIGINS
+        value: https://hashansoysa92-commits.github.io
+      - key: STORAGE_CONFIG_FILE
+        value: /data/storage.json

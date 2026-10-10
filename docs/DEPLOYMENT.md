@@ -21,3 +21,11 @@ GitHub Actions runs tests on pushes. Hosting deployment is separate; this reposi
 ## GitHub Pages frontend
 
 The repository root redirects to `public/index.html`, retaining room/tablet query parameters. Pages serves the interface only. Deploy the Node server on a single persistent container first; set `APP_URL` to the public frontend URL (so room/tablet links open the interface), and include the backend origin plus `https://hashansoysa92-commits.github.io` in `FRONTEND_ORIGINS`. Set `window.CLINICA_API_BASE` in `public/config.js` to that HTTPS backend origin. Do not put secrets in config.js. Until this is configured, Pages explicitly shows the missing server connection and disables password submission.
+
+## Prepared Render deployment
+
+`render.yaml` defines a single Node 22 service in Singapore with a persistent 1 GB configuration disk. The service plan is paid; confirm the dashboard cost yourself before provisioning. Select New → Blueprint, connect this GitHub repository, and use its render.yaml. Supply the initial administrator password and Google OAuth credentials through the host secret fields. No secrets are generated or committed here.
+
+Render sets RENDER_EXTERNAL_URL automatically; the server uses this URL for generated tablet and room links when APP_URL is unset. Open that server URL for the complete same-origin application, with no public/config.js change required. For the GitHub Pages entry, set public/config.js to that same server origin and publish the change. The folder is selected inside Super Admin → Drive Storage after authorization. Existing records still require the private migration process.
+
+Live acceptance: verify /healthz, sign in, connect an empty private Drive folder, use a synthetic patient to verify today's room queues, signature display, passport page 2 and PDF; restart the service and verify the saved record survives. This file does not imply those live checks have already passed.
